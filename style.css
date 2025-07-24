@@ -1,0 +1,232 @@
+/* Reset some defaults */
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #e6f0ff;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: flex-start;
+  }
+  
+  .container {
+    background: #fff;
+    max-width: 480px;
+    width: 100%;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    user-select: none;
+  }
+  
+  h1 {
+    margin: 0 0 25px;
+    font-weight: 700;
+    color: #1a3e72;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+  
+  form#habit-form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  
+  #habit-input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    font-size: 16px;
+    border: 2px solid #a8c0ff;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+  }
+  
+  #habit-input:focus {
+    outline: none;
+    border-color: #2d66f6;
+    box-shadow: 0 0 8px rgba(45, 102, 246, 0.5);
+  }
+  
+  #habit-form button {
+    background: #2d66f6;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+  }
+  
+  #habit-form button:hover {
+    background: #154cbd;
+  }
+  
+  label[for="filter"] {
+    font-weight: 600;
+    margin-right: 10px;
+    color: #555;
+  }
+  
+  #filter {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1.5px solid #a8c0ff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    margin-bottom: 15px;
+  }
+  
+  #filter:focus {
+    outline: none;
+    border-color: #2d66f6;
+    box-shadow: 0 0 6px rgba(45, 102, 246, 0.4);
+  }
+  
+  #habit-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #habit-list li {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    background: #f7f9ff;
+    box-shadow: 0 2px 6px rgba(45, 102, 246, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  #habit-list li:hover {
+    background: #e3ebff;
+    transform: translateY(-2px);
+  }
+  
+  /* Checkbox styling */
+  #habit-list input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    accent-color: #2d66f6;
+    flex-shrink: 0;
+  }
+  
+  /* Habit name */
+  #habit-list span {
+    margin-left: 14px;
+    font-size: 18px;
+    flex-grow: 1;
+    user-select: text;
+    transition: color 0.3s ease;
+  }
+  
+  /* Strike-through for completed */
+  #habit-list input[type="checkbox"]:checked + span {
+    text-decoration: line-through;
+    color: #999;
+    font-style: italic;
+  }
+  
+  /* Delete button */
+  #habit-list button {
+    background: transparent;
+    border: none;
+    color: #e63946;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0 8px;
+    transition: color 0.3s ease;
+    flex-shrink: 0;
+  }
+  
+  #habit-list button:hover {
+    color: #b12c3a;
+  }
+  
+  /* Editable input */
+  #habit-list input[type="text"] {
+    flex-grow: 1;
+    margin-left: 14px;
+    font-size: 18px;
+    padding: 6px 10px;
+    border: 2px solid #a8c0ff;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+  }
+  
+  #habit-list input[type="text"]:focus {
+    outline: none;
+    border-color: #2d66f6;
+    box-shadow: 0 0 6px rgba(45, 102, 246, 0.4);
+  }
+  
+  /* Habit counter */
+  #habit-counter {
+    margin-top: 24px;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+    color: #555;
+  }
+  
+  /* Responsive */
+  @media (max-width: 520px) {
+    .container {
+      padding: 20px;
+    }
+  
+    #habit-input {
+      font-size: 14px;
+    }
+  
+    #habit-list span,
+    #habit-list input[type="text"] {
+      font-size: 16px;
+    }
+  }
+/* Fade in animation */
+@keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Fade out animation */
+  @keyframes fadeOutUp {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-15px);
+    }
+  }
+  
+  /* Apply fade-in on new habit */
+  #habit-list li.new-habit {
+    animation: fadeInDown 0.3s ease forwards;
+  }
+  
+  /* Fade out on removing habit */
+  #habit-list li.removing {
+    animation: fadeOutUp 0.3s ease forwards;
+  }
+    
